@@ -1,0 +1,137 @@
+Guide 
+
+🚀 Step 1: Create a Next.js 19 Project
+npx create-next-app@latest your-ecommerce-template
+
+🚀 Step 2: Choose the Right Setup Options
+You'll see several prompts. Here’s what to select:
+
+Prompt	Recommended Choice	Explanation
+Would you like to use TypeScript?	Yes	
+Would you like to use ESLint?	Yes	
+Would you like to use Tailwind CSS?	Yes	
+Would you like to use src/ directory?	No	
+Would you like to use experimental app/ directory?	Yes	
+
+
+Sanity.io and dependencies
+
+npm create sanity@latest -- --project vfb6gtfz --dataset {{PROJECT_DATASET_0}} --template clean --typescript --output-path studio-new_ecommerce_new
+
+? Create a new project or select an existing one Create new project
+? Your project name: ecommerce-ytbuild
+? Select organization: Zephyer 117 [oF6N3kNyo]
+
+? Create a new project or select an existing one ecommerce-ytbuild (pim5kc4f
+)
+? Select dataset to use production
+? Would you like to add configuration files for a Sanity project in this Nex
+t.js folder? Yes
+
+? Use the default dataset configuration? Yes
+
+? Do you want to use TypeScript? Yes
+? Would you like an embedded Sanity Studio? Yes
+? What route do you want to use for the Studio? /studio
+? Would you like to add the project ID and dataset to your .env.local file? 
+Yes
+
+
+Affter Sanity is installed then we need to setup or .env(file)
+
+🚀 Step 1: Install Sanity in Your Project
+npm install @sanity/client @sanity/image-url
+
+
+
+Clerk for authentication
+
+npm install @clerk/nextjs
+Clerk_Secret auth key from clerk to env files
+Add <ClerkProvider dynamic> to layout.tsx
+
+ShadeIn
+npx shadcn@latest init
+npx shadcn@latest add button
+
+Fix the store and studio file in app folder
+
+
+
+Header Section complete
+Footer section complete
+
+Add Category section
+Add Carusol section
+Simply complete search page section
+
+Install sanity cli
+npm install --global sanity@latest
+sanity schema extract (Extract schema)
+sanity typegen generate (Generate typegen typescript [groq query generator]) After each generation 
+"typegen": "npx sanity schema extract && npx sanity typegen generate" [package.jsson: script]
+npm run typegen
+
+Fix Sanity schema and others
+
+
+SchemaTypes:
+
+Holds all the schema for sanity studio So its a backend property
+Folder like (productType) are just SchemaTypes nothing else so they are not connected yet
+
+Go to index.tsx under sanity Here we need to declare everyhting we have for our sanity /studio
+
+
+
+Sanity token (DEveloper): sk8RqrrGY9sIrfnquIJfVVlIm47m4haHFhD8YQIMvTofymgLICvomkBATvY6pWzPfTjmLiLxCcCYQEggmnSIHxvPwOokOlnlZtqX0hkPBZUJBG9Ks7P99FDfEVIoenqPIMKlI2jkvL4pWf4cfd0ZyvaEwfiqBPKioqBIejKnB1gDqjieRKzN
+
+Fix structuree and liove option and etcs
+
+Inside Sanity Make folder for each fetch function 
+
+Inject groq 
+(`
+        *[
+            _type == "product"
+        ] | order(name asc) //Get all product
+         
+        { //define what info we needs
+            _id,
+            name,
+            slug,
+            mainImage {
+                asset->,
+                alt
+            },
+            description,
+            price,
+            stock,
+            isOnSale,
+            saleEndDate
+        }`)
+
+After injecting each qurey and typegen 
+
+Fix GetProduct
+ const products = await sanityFetch({
+            query: ALL_PRODUCTS_QUERY,
+        });
+
+
+Craate productView on (store)/page.tsx
+Crate productView component
+Crate ProductThumb component
+Crate productGrid component
+
+Now make Search Page Compt
+Create search folder in store with Page.tsx 
+Create SearchBar
+Create SearchResults
+Create SearchFilters
+Create searchProductsByName inside lib
+
+Now make Single product page 
+inside store create product/[slug] page
+
+create getProductBySlug
